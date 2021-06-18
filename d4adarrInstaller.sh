@@ -80,10 +80,6 @@ cd pamac-aur
 
 makepkg -si
 
-echo "Installing brave browser -bin version using yay"
-
-yay -S brave-bin
-
 echo "Installing hakuneko-desktop.. using yay"
 
 yay -S hakuneko-desktop
