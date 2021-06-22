@@ -3,6 +3,11 @@
 echo "############ Starting d4adarrInstaller v1.0 ############"
 echo "## Setting up local development area.. Please wait!"
 
+echo "Updating.. using pacman!"
+
+sudo pacman -Syu
+
+
 echo "### Settings up Github development directories!"
 
 echo "#### Making Github directory to store all files.."
