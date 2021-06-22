@@ -1,3 +1,5 @@
+![logo](https://i.imgur.com/nQiZJNQ.png)
+
 # Tabel Installer
 Tabel is a all in one, PC Setup thing. It sets up everything for you when you get a new pc. (Currently only supported on Debian/Ubuntu and Arch base systems, but I might port it over to windows once [Winget](https://github.com/microsoft/winget-cli) get's good enough.
 
