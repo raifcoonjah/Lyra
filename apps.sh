@@ -1,0 +1,1 @@
+echo "Apps list, updated on 17 jun 2021"
