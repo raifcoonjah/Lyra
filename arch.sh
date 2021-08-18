@@ -74,11 +74,11 @@ mkdir VM
 
 cd VM
 
-echo "Downloading Manjaro 21.0.7 LTS"
+echo "Downloading Manjaro Linux I3.."
 
-wget https://download.manjaro.org/xfce/21.0.7/manjaro-xfce-21.0.7-minimal-210614-linux54.iso
+wget https://download.manjaro.org/i3/21.0.7/manjaro-i3-21.0.7-210623-linux510.iso
 
-echo "Downloading POP_OS! LTS"
+echo "Debian: Downloading POP_OS! LTS"
 
 wget https://pop-iso.sfo2.cdn.digitaloceanspaces.com/20.04/amd64/intel/30/pop-os_20.04_amd64_intel_30.iso
 
