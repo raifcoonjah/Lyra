@@ -15,7 +15,7 @@ echo "> Setting up git.."
 # git config --global user.email "raifcoonjah@pm.me"
 # sudo git config --system core.editor nano
 # git config --global credential.helper cache
-# git config --global credential.helper 'cache --timeout=25000'
+# git config --global credential.helper 'cache --timeout=25000000000000'
 # git config --global push.default simple
 
 echo "Loading next step.."
