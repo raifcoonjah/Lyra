@@ -31,11 +31,11 @@ do
             echo -e "${BLUE}Running Arch basic setup..${ENDCOLOR}"
 
             ## Basic tools that I think should be installed by default on any machine. 
-            echo -e "${BLUE}:: Installing Git, curl, nano, wget & Zsh..${ENDCOLOR}"
-            sudo pacman -S --noconfirm git curl wget zsh nano 
+            echo -e "${BLUE}:: Installing Git, curl, nano, wget, zsh & fakeroot..${ENDCOLOR}"
+            sudo pacman -S --noconfirm git curl wget zsh nano fakeroot
 
             echo -e "${BLUE}:: Installing tar, gzip, bzip2, unzip, unrar & p7zip.. ${ENDCOLOR}"
-            pacman -S --noconfirm tar gzip bzip2 unzip unrar p7zip
+            sudo pacman -S --noconfirm tar gzip bzip2 unzip unrar p7zip
             ## Flatpak support
             echo -e "${BLUE}Installing and adding flatpak support..${ENDCOLOR}"
             sudo pacman -S --noconfirm flatpak 
