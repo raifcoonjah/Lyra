@@ -62,8 +62,8 @@ do
 
             sudo pacman --noconfirm -S noto-fonts-cjk noto-fonts-extra noto-fonts-emoji ttf-dejavu
 
-            echo -e "${GREEN}:: Basic Arch setup: Done. ${ENDCOLOR}"
-            echo " To install gaming packages please choose ArchGaming.."
+            echo -e "${GREEN}:: Basic Arch setup: SUCCESSFUL! ${ENDCOLOR}"
+            # echo " To install gaming packages please choose ArchGaming.."
 
             ;;
         "Debian/Ubuntu")
