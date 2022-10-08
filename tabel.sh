@@ -71,6 +71,32 @@ do
             ;;
         "Fedora")
             echo "Selected Fedora.."
+            echo -e "${BLUE}Welcome to Fedora, lets get going...${ENDCOLOR}"
+            echo -e "${GREEN}:: Doing some magic to make dnf faster... (Password required)${ENDCOLOR}"
+            echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
+
+            echo -e "${GREEN}:: Starting system update process...${ENDCOLOR}"
+            sudo dnf update -y 
+
+            echo -e "${BLUE}Enabling a bunch of stuff, including Multimedia codecs, flatpak and RPMFushion${ENDCOLOR}"
+
+            echo -e "${GREEN}:: Setting up flatpak... (You might need to enter your password)${ENDCOLOR}"
+            sudo dnf install flatpak
+            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+            echo -e "${GREEN}:: Installing RPMFushion repo...${ENDCOLOR}"
+            sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+            echo -e "${GREEN}:: Enabling Media codecs...${ENDCOLOR}"
+            sudo dnf install gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel -y
+            sudo dnf install lame\* --exclude=lame-devel -y 
+            sudo dnf group upgrade --with-optional Multimedia -y
+
+            echo -e "${GREEN}:: Installing basic software...${ENDCOLOR}"
+            sudo dnf install p7zip git curl wget
+
+            echo ":: All good, installing successfull"
+             echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${RED}
             ;;
         "Quit/Exit")
             break
