@@ -96,7 +96,7 @@ do
             sudo dnf install p7zip git curl wget
 
             echo ":: All good, installing successfull"
-             echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${RED}
+             echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${RED}"
             ;;
         "Quit/Exit")
             break
