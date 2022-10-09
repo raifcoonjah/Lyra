@@ -58,8 +58,8 @@ do
 
             ## Installing fonts
 
-            echo -e "${GREEN}:: Installing wine depencies....${ENDCOLOR}"
-            echo -e "${GREEN}:: We use the Lutris wine depencies list ${ENDCOLOR}"
+            echo -e "${GREEN}:: Installing wine dependencies....${ENDCOLOR}"
+            echo -e "${GREEN}:: We use the Lutris wine dependencies list ${ENDCOLOR}"
             echo -e "${GREEN}:: Source here: https://github.com/lutris/docs/blob/master/WineDependencies.md${ENDCOLOR}"
 
             echo -e "${RED}::Enabling multilib (TESTING REQUIRED..)${ENDCOLOR}"
@@ -75,7 +75,7 @@ do
             ncurses lib32-ncurses ocl-icd lib32-ocl-icd libxslt lib32-libxslt libva lib32-libva gtk3 \
             lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader
 
-            echo -e "${GREEN}:: Wine/Lutris depencies installed! ${ENDCOLOR}"
+            echo -e "${GREEN}:: Wine/Lutris dependencies installed! ${ENDCOLOR}"
 
             echo -e "${GREEN}:: Installing fonts...${ENDCOLOR}"
 
