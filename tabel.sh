@@ -64,7 +64,7 @@ do
 
             echo -e "${RED}::Enabling multilib (TESTING REQUIRED..)${ENDCOLOR}"
 
-            sed -i 's/#\[multilib]/\[multilib]/g' /etc/pacman.conf
+            sed '/^#\[multilib]/{N;s/\n#/\n/}' /etc/pacman.conf
 
             sudo pacman -Syu --noconfirm
 
