@@ -100,7 +100,7 @@ do
             neofetch
 
             echo ":: All good, installing successfull"
-             echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${RED}"
+            echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${ENDCOLOR}"
             ;;
         "Quit/Exit")
             break
