@@ -14,8 +14,8 @@ echo -e "${GREEN}
   \/__/      /:/  /   \::/  /   \:\/  /   \:\__\  
              \/__/     \/__/     \/__/     \/__/
 
-            ++ Version: 1.0 ++
-    Developed & Maintain by Tabel Developers.
+            ++ Version: 1.1 ++
+    Developed & Maintained by Tabel Developers.
 ${ENDCOLOR}
 "
 
@@ -93,7 +93,9 @@ do
             sudo dnf group upgrade --with-optional Multimedia -y
 
             echo -e "${GREEN}:: Installing basic software...${ENDCOLOR}"
-            sudo dnf install p7zip git curl wget
+            sudo dnf install p7zip git curl wget neofetch -y 
+
+            neofetch
 
             echo ":: All good, installing successfull"
              echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${RED}"
