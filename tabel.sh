@@ -14,13 +14,13 @@ echo -e "${GREEN}
   \/__/      /:/  /   \::/  /   \:\/  /   \:\__\  
              \/__/     \/__/     \/__/     \/__/
 
-            ++ Version: 1.1 ++
+            ++ Version: 1.1 | Codename: Cheese cake ++
     Developed & Maintained by Tabel Developers.
 ${ENDCOLOR}
 "
 
+echo -e "${RED}When using tabel we expect you already have a working install of your selected distro.${ENDCOLOR}"
 echo "Please choose your distro: "
-echo "When using tabel we expect you already have a working install of your selected distro. "
 
 
 supported_distros=("Arch Linux" "Debian/Ubuntu" "Fedora" "Quit/Exit")
