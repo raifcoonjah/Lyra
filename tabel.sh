@@ -74,6 +74,8 @@ do
             echo -e "${BLUE}Welcome to Fedora, lets get going...${ENDCOLOR}"
             echo -e "${GREEN}:: Doing some magic to make dnf faster... (Password required)${ENDCOLOR}"
             echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
+            echo 'defaultyes=True' | sudo tee -a /etc/dnf/dnf.conf
+            echo 'deltarpm=true' | sudo tee -a /etc/dnf/dnf.conf
 
             echo -e "${GREEN}:: Starting system update process...${ENDCOLOR}"
             sudo dnf update -y 
