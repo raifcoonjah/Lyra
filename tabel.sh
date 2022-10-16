@@ -73,8 +73,16 @@ do
             echo "Selected Fedora.."
             echo -e "${BLUE}Welcome to Fedora, lets get going...${ENDCOLOR}"
             echo -e "${GREEN}:: Doing some magic to make dnf faster... (Password required)${ENDCOLOR}"
+            echo -e "Checking if line is present first.."
+            # Go into file and check if lines are there (>?)
+        if grep -q 'max_parallel_downloads=10' /etc/dnf/dnf.conf || grep -q 'defaultyes' /etc/dnf/dnf.conf
+            then
+            echo "Lines are already enabled! :D"
+        else
+            echo "Doing magic.."
             echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
             echo 'defaultyes=True' | sudo tee -a /etc/dnf/dnf.conf
+        fi
 
             echo -e "${GREEN}:: Starting system update process...${ENDCOLOR}"
             sudo dnf update -y 
@@ -100,6 +108,8 @@ do
 
             echo ":: All good, installing successfull"
             echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${ENDCOLOR}"
+
+            break 
             ;;
         "Quit/Exit")
             break
