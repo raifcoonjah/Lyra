@@ -85,11 +85,15 @@ do
         fi
 
             echo -e "${GREEN}:: Starting system update process...${ENDCOLOR}"
-            sudo dnf update -y 
+            sudo dnf update -y
+            
+            echo "Hold up, let me drink some water..."
+
+            sleep 1
 
             echo -e "${BLUE}Enabling a bunch of stuff, including Multimedia codecs, flatpak and RPMFushion${ENDCOLOR}"
 
-            echo -e "${GREEN}:: Setting up flatpak... (You might need to enter your password)${ENDCOLOR}"
+            echo -e "${GREEN}:: Setting up flatpak... (Password might be required!)${ENDCOLOR}"
             sudo dnf install flatpak
             flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
