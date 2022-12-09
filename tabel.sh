@@ -106,7 +106,7 @@ do
             sudo dnf group upgrade --with-optional Multimedia -y
 
             echo -e "${GREEN}:: Installing basic software...${ENDCOLOR}"
-            sudo dnf install p7zip git curl wget neofetch -y 
+            sudo dnf install p7zip unrar git curl wget neofetch -y 
 
             neofetch
 
