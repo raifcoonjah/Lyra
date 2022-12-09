@@ -13,7 +13,7 @@ Currently tabel is supported on
 </ol> 
 
 ### About Tabel
-Tabel is written in plain **old bash** to make it easy to fork and add changes you deem necessary for your own setup. Currently the project is still a work-in-progress and is **not production ready, DO NOT USE IT YET!** But if like to live a risky life, you're free to give it a try and report any issues you experienced :D
+Tabel is written in plain **old bash** to make it easy to fork and add changes you deem necessary for your own setup. Currently the project is still a work-in-progress and is **stable** for daily use.
 
 Current Features
 - Super easy to use.
