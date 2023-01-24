@@ -23,7 +23,7 @@ echo -e "${RED}When using tabel we expect you already have a working install of 
 echo "Please choose your distro: "
 
 
-supported_distros=("Arch Linux" "Ubuntu" "Fedora" "Quit/Exit")
+supported_distros=("Arch Linux" "Ubuntu" "Fedora" "Update" "Quit/Exit")
 select opt in "${supported_distros[@]}"
 do
     case $opt in
@@ -84,7 +84,7 @@ do
             echo -e "${RED}The following will be removed: Firefox provided by snap ${ENDCOLOR}"
             sudo snap remove firefox
 
-            echo -e "${RED}:: Installing and enabling Firefox from mozillateam/ppa..."
+            echo -e "${RED}:: Installing and enabling Firefox from mozillateam/ppa...${ENDCOLOR}"
             sudo add-apt-repository ppa:mozillateam/ppa
 
             echo '
@@ -129,13 +129,21 @@ Pin-Priority: 1001
             
             cd disable-ubuntu-telemetry
 
-            echo "The following script will be run in 10 seconds, feel free to check it yourself."
+            echo "The following script will be run in 5 seconds, feel free to check it yourself."
 
             cat disableUbuntuOptOut.sh
 
-            sleep 10 
+            sleep 5
+
+            echo "Using sudo permission to run script.."
+
+            sudo ./disableUbuntuOptOut.sh
 
             chmod +x disableUbuntuOptOut.sh
+
+            cd ..
+
+            rm -r disable-ubuntu-telemetry
 
             cd ..
 
@@ -186,8 +194,14 @@ Pin-Priority: 1001
             echo ":: All good, installing successfull"
             echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${ENDCOLOR}"
 
-            break 
-            ;;
+;;
+        "Update")
+
+            echo -e "${GREEN}Updating tabel... ${ENDCOLOR}"
+            # git fetch -all
+            # git reset --hard origin/ubuntu ## TODO: CHANGE TO MASTER
+break
+;;
         "Quit/Exit")
             break
             ;;
