@@ -198,7 +198,7 @@ Pin-Priority: 1001
         "Update")
 
             echo -e "${GREEN}Updating tabel... ${ENDCOLOR}"
-            git fetch -all
+            git fetch --all
             git reset --hard origin/ubuntu ## TODO: CHANGE TO MASTER
 break
 ;;
