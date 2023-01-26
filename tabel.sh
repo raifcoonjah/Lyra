@@ -6,16 +6,19 @@ BLUE="\e[34m"
 ENDCOLOR="\e[0m"
 
 echo -e "${GREEN}
-    ___       ___       ___       ___   
-   /\  \     /\  \     /\  \     /\  \     /\__\  
-   \:\  \   /::\  \   /::\  \   /::\  \   /:/  /  
-   /::\__\ /::\:\__\ /::\:\__\ /::\:\__\ /:/__/   
-  /:/\/__/ \/\::/  / \:\::/  / \:\:\/  / \:\  \   
-  \/__/      /:/  /   \::/  /   \:\/  /   \:\__\  
-             \/__/     \/__/     \/__/     \/__/
-
-            ++ Version: 1.1 | Codename: Cheese cake ++
-    Developed & Maintained by Tabel Developers.
+        ──────▄▀▄─────▄▀▄
+        ─────▄█░░▀▀▀▀▀░░█▄
+        ─▄▄──█░░░░░░░░░░░█──▄▄
+        █▄▄█─█░░▀░░┬░░▀░░█─█▄▄█
+==========================================
+|████████╗░█████╗░██████╗░███████╗██╗░░░░░|
+|╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║░░░░░|
+|░░░██║░░░███████║██████╦╝█████╗░░██║░░░░░|
+|░░░██║░░░██╔══██║██╔══██╗██╔══╝░░██║░░░░░|
+|░░░██║░░░██║░░██║██████╦╝███████╗███████╗|
+|░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░╚══════╝╚══════╝|
+================ v2.0 ====================
+============= By Raif C. =================
 ${ENDCOLOR}
 "
 
@@ -34,8 +37,9 @@ do
             echo -e "${BLUE}:: Installing Git, curl, nano, wget, zsh & fakeroot..${ENDCOLOR}"
             sudo pacman -S --noconfirm git curl wget zsh nano fakeroot
 
-            echo -e "${BLUE}:: Installing tar, gzip, bzip2, unzip, unrar & p7zip.. ${ENDCOLOR}"
-            sudo pacman -S --noconfirm tar gzip bzip2 unzip unrar p7zip
+            echo -e "${BLUE}:: Installing Unzip, unrar & p7zip.. ${ENDCOLOR}"
+            sudo pacman -S --noconfirm tar unzip unrar p7zip
+
             ## Flatpak support
             echo -e "${BLUE}Installing and adding flatpak support..${ENDCOLOR}"
             sudo pacman -S --noconfirm flatpak 
@@ -62,8 +66,7 @@ do
 
             sudo pacman --noconfirm -S noto-fonts-cjk noto-fonts-extra noto-fonts-emoji ttf-dejavu
 
-            echo -e "${GREEN}:: Basic Arch setup: SUCCESSFUL! ${ENDCOLOR}"
-            # echo " To install gaming packages please choose ArchGaming.."
+            notify-send --app-name=Tabel --expire-time=10000 "Arch setup complete, goodbye"
 
             ;;
         "Ubuntu")
@@ -76,14 +79,17 @@ do
 
             echo -e "${BLUE}:: Enabling Multimedia Media codecs... ${ENDCOLOR}"
             echo -e "${RED}:: The following package may require additional confirmation, please press <OK> when shown..${ENDCOLOR}"
+            sleep 3
             sudo apt install ubuntu-restricted-extras -y 
             
-            echo -e "{BLUE}:: Installing unzip, unrar, p7zip${ENDCOLOR}"            
-            sudo apt install p7zip unrar unzip
+            echo -e "{BLUE}:: Installing unzip, unrar, p7zip, neofetch${ENDCOLOR}"            
+            sudo apt install p7zip unrar unzip neofetch -y 
 
             echo -e "${RED}The following will be removed: Firefox provided by snap ${ENDCOLOR}"
             sudo snap remove firefox
 
+
+            ## This will add Firefox's own Debian repo and use that instead of Firefox snap
             echo -e "${RED}:: Installing and enabling Firefox from mozillateam/ppa...${ENDCOLOR}"
             sudo add-apt-repository ppa:mozillateam/ppa
 
@@ -97,14 +103,15 @@ Pin-Priority: 1001
 
             echo -e "${GREEN}:: Installing Firefox (deb package)...${ENDCOLOR}"
             
-            sudo apt install firefox
+            sudo apt install firefox -y
 
             echo -e "${GREEN}:: Installing flatpak ${ENDCOLOR}"\
 
-            sudo apt install gnome-software gnome-software-plugin-flatpak flatpak
+            sudo apt install gnome-software gnome-software-plugin-flatpak flatpak -y
             
             echo -e "${GREEN}:: Enabling flathub support... ${ENDCOLOR}"
-            echo "The following may require your password."
+            echo -e "${RED}:: Password authentication for addition of flatpak remote. ${ENDCOLOR}"
+            sleep 3
             flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
             echo -e "${RED}:: The following packages will be disabled and removed: Snapd, snap, snap-store ${ENDCOLOR}"
@@ -141,18 +148,14 @@ Pin-Priority: 1001
 
             chmod +x disableUbuntuOptOut.sh
 
-            cd ..
+            ## Run command neofetch because why not :D
+            neofetch 
 
-            rm -r disable-ubuntu-telemetry
-
-            cd ..
-
-            rm -r tabel-ubuntu
-
+            notify-send --app-name=Tabel "Ubuntu installation complete, please reboot your machine before performing any other task."
             ;;
         "Fedora")
             echo "Selected Fedora.."
-            echo -e "${BLUE}Welcome to Fedora, lets get going...${ENDCOLOR}"
+            echo -e "${BLUE}Welcome to Fedora ${ENDCOLOR}"
             echo -e "${GREEN}:: Doing some magic to make dnf faster... (Password required)${ENDCOLOR}"
             echo -e "Checking if line is present first.."
             # Go into file and check if lines are there (>?)
@@ -168,7 +171,7 @@ Pin-Priority: 1001
             echo -e "${GREEN}:: Starting system update process...${ENDCOLOR}"
             sudo dnf update -y
             
-            echo "Hold up, let me drink some water..."
+            echo "Hold up a second.."
 
             sleep 1
 
@@ -191,8 +194,7 @@ Pin-Priority: 1001
 
             neofetch
 
-            echo ":: All good, installing successfull"
-            echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${ENDCOLOR}"
+            notify-send --app-name=Tabel --expire-time=10000 "Setup complete, please reboot your machine before performing any other task"
 
 ;;
         "Update")
@@ -200,6 +202,8 @@ Pin-Priority: 1001
             echo -e "${GREEN}Updating tabel... ${ENDCOLOR}"
             git fetch --all
             git reset --hard origin/ubuntu ## TODO: CHANGE TO MASTER
+            notify-send --app-name=Tabel --expire-time=10000 "Tabel updated successfully"
+            
 break
 ;;
         "Quit/Exit")
