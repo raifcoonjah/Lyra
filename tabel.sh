@@ -3,9 +3,10 @@
 RED="\e[31m"
 GREEN="\e[32m"
 BLUE="\e[34m"
+PURPLE='\033[0;35m'
 ENDCOLOR="\e[0m"
 
-echo -e "${GREEN}
+echo -e "${PURPLE}
         ──────▄▀▄─────▄▀▄
         ─────▄█░░▀▀▀▀▀░░█▄
         ─▄▄──█░░░░░░░░░░░█──▄▄
@@ -83,11 +84,14 @@ do
             sudo apt install ubuntu-restricted-extras -y 
             
             echo -e "{BLUE}:: Installing unzip, unrar, p7zip, neofetch${ENDCOLOR}"            
-            sudo apt install p7zip unrar unzip neofetch -y 
+            sudo apt install p7zip unrar unzip neofetch -y
 
+            echo -e "{BLUE}:: Installing Nala... ${ENDCOLOR}"
+
+            sudo apt install nala 
+            
             echo -e "${RED}The following will be removed: Firefox provided by snap ${ENDCOLOR}"
             sudo snap remove firefox
-
 
             ## This will add Firefox's own Debian repo and use that instead of Firefox snap
             echo -e "${RED}:: Installing and enabling Firefox from mozillateam/ppa...${ENDCOLOR}"
