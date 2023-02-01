@@ -75,22 +75,25 @@ do
             
             echo -e "${GREEN}:: Perfoming system update, this may take a moment...${ENDCOLOR}"
             sudo apt update 
-            sleep 1
+            sleep 5
             sudo apt upgrade -y 
 
             echo -e "${BLUE}:: Enabling Multimedia Media codecs... ${ENDCOLOR}"
             echo -e "${RED}:: The following package may require additional confirmation, please press <OK> when shown..${ENDCOLOR}"
-            sleep 3
+            sleep 5
             sudo apt install ubuntu-restricted-extras -y 
             
             echo -e "{BLUE}:: Installing unzip, unrar, p7zip, neofetch${ENDCOLOR}"            
             sudo apt install p7zip unrar unzip neofetch -y
 
             echo -e "{BLUE}:: Installing Nala... ${ENDCOLOR}"
+            echo -e "{BLUE}:: Learn more about Nala: https://gitlab.com/volian/nala {ENDCOLOR}"
 
             sudo apt install nala 
-            
+
+            echo -e "{RED}:: Starting replacement of Firefox snap {ENDCOLOR}"
             echo -e "${RED}The following will be removed: Firefox provided by snap ${ENDCOLOR}"
+            
             sudo snap remove firefox
 
             ## This will add Firefox's own Debian repo and use that instead of Firefox snap
@@ -115,14 +118,15 @@ Pin-Priority: 1001
             
             echo -e "${GREEN}:: Enabling flathub support... ${ENDCOLOR}"
             echo -e "${RED}:: Password authentication for addition of flatpak remote. ${ENDCOLOR}"
-            sleep 3
+            sleep 5
             flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-            echo -e "${RED}:: The following packages will be disabled and removed: Snapd, snap, snap-store ${ENDCOLOR}"
+            echo -e "${RED}:: The following packages systemd services will be disabled: snapd.service, snapd.socket, snapd.seeded.service ${ENDCOLOR}"
             sudo systemctl disable snapd.service
             sudo systemctl disable snapd.socket
             sudo systemctl disable snapd.seeded.service
 
+            # The follow command will remove all currently installed snaps before we remove it using apt. 
             sudo snap remove $(snap list | awk '!/^Name|^core/ {print $1}')
 
             sudo apt autoremove --purge snapd
@@ -132,7 +136,7 @@ Pin-Priority: 1001
 
             echo -e "Blocking ubuntu from accessing telemetry..."
             echo "Tabel will use a third-party tool called disable-ubuntu-telemetry developed by LamdaLamdaLamda!"
-            echo "Some files will be cloned from Github, afterwards everything will be removed."
+            echo "Some files will be cloned from Github..."
 
             mkdir tabel-ubuntu
             cd tabel-ubuntu
@@ -140,11 +144,11 @@ Pin-Priority: 1001
             
             cd disable-ubuntu-telemetry
 
-            echo "The following script will be run in 5 seconds, feel free to check it yourself."
+            echo "The following script will be run in 10 seconds, feel free to check it yourself."
 
             cat disableUbuntuOptOut.sh
 
-            sleep 5
+            sleep 10 
 
             echo "Using sudo permission to run script.."
 
@@ -155,6 +159,7 @@ Pin-Priority: 1001
             ## Run command neofetch because why not :D
             neofetch 
 
+            echo -e "{GREEN}:: Setup complete, please reboot your machine before performing any other task."
             notify-send --app-name=Tabel "Ubuntu installation complete, please reboot your machine before performing any other task."
             ;;
         "Fedora")
