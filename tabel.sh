@@ -83,15 +83,15 @@ do
             sleep 5
             sudo apt install ubuntu-restricted-extras -y 
             
-            echo -e "{BLUE}:: Installing unzip, unrar, p7zip, neofetch${ENDCOLOR}"            
+            echo -e "${BLUE}:: Installing unzip, unrar, p7zip, neofetch${ENDCOLOR}"            
             sudo apt install p7zip unrar unzip neofetch -y
 
-            echo -e "{BLUE}:: Installing Nala... ${ENDCOLOR}"
-            echo -e "{BLUE}:: Learn more about Nala: https://gitlab.com/volian/nala {ENDCOLOR}"
+            echo -e "${BLUE}:: Installing Nala... ${ENDCOLOR}"
+            echo -e "${BLUE}:: Learn more about Nala: https://gitlab.com/volian/nala {ENDCOLOR}"
 
             sudo apt install nala 
 
-            echo -e "{RED}:: Starting replacement of Firefox snap {ENDCOLOR}"
+            echo -e "${RED}:: Starting replacement of Firefox snap {ENDCOLOR}"
             echo -e "${RED}The following will be removed: Firefox provided by snap ${ENDCOLOR}"
             
             sudo snap remove firefox
@@ -159,7 +159,7 @@ Pin-Priority: 1001
             ## Run command neofetch because why not :D
             neofetch 
 
-            echo -e "{GREEN}:: Setup complete, please reboot your machine before performing any other task."
+            echo -e "${GREEN}:: Setup complete, please reboot your machine before performing any other task."
             notify-send --app-name=Tabel "Ubuntu installation complete, please reboot your machine before performing any other task."
             ;;
         "Fedora")
