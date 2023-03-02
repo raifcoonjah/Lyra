@@ -68,6 +68,7 @@ do
             ;;
         "Debian/Ubuntu")
             echo "Selected Debian/Ubuntu.."
+            echo "Ah! Sorry but support for Ubuntu is coming soon."
             ;;
         "Fedora")
             echo "Selected Fedora.."
