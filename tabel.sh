@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+## Set color values
 RED="\e[31m"
 GREEN="\e[32m"
 BLUE="\e[34m"
@@ -7,19 +9,12 @@ PURPLE='\033[0;35m'
 ENDCOLOR="\e[0m"
 
 echo -e "${PURPLE}
-        ──────▄▀▄─────▄▀▄
-        ─────▄█░░▀▀▀▀▀░░█▄
-        ─▄▄──█░░░░░░░░░░░█──▄▄
-        █▄▄█─█░░▀░░┬░░▀░░█─█▄▄█
-==========================================
-|████████╗░█████╗░██████╗░███████╗██╗░░░░░|
-|╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║░░░░░|
-|░░░██║░░░███████║██████╦╝█████╗░░██║░░░░░|
-|░░░██║░░░██╔══██║██╔══██╗██╔══╝░░██║░░░░░|
-|░░░██║░░░██║░░██║██████╦╝███████╗███████╗|
-|░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░╚══════╝╚══════╝|
-================ v2.0 ====================
-============= By Raif C. =================
+████████╗░█████╗░██████╗░███████╗██╗░░░░░
+╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║░░░░░
+░░░██║░░░███████║██████╦╝█████╗░░██║░░░░░
+░░░██║░░░██╔══██║██╔══██╗██╔══╝░░██║░░░░░
+░░░██║░░░██║░░██║██████╦╝███████╗███████╗
+░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░╚══════╝╚══════╝
 ${ENDCOLOR}
 "
 
@@ -50,8 +45,8 @@ do
 
             ## This directory is going to store everything during the setup. 
             echo "Making directory to store files.."
-            mkdir tabel_arch_install 
-            cd tabel_arch_install
+            mkdir tabel_yayinstall 
+            cd tabel_yayinstall
 
             ## Cloning and building the AUR
             echo "Downloading yay-bin from AUR.."
@@ -66,6 +61,7 @@ do
             echo -e "${GREEN}:: Installing fonts...${ENDCOLOR}"
 
             sudo pacman --noconfirm -S noto-fonts-cjk noto-fonts-extra noto-fonts-emoji ttf-dejavu
+
 
             notify-send --app-name=Tabel --expire-time=10000 "Arch setup complete, goodbye"
 
@@ -87,9 +83,16 @@ do
             sudo apt install p7zip unrar unzip neofetch -y
 
             echo -e "${BLUE}:: Installing Nala... ${ENDCOLOR}"
-            echo -e "${BLUE}:: Learn more about Nala: https://gitlab.com/volian/nala {ENDCOLOR}"
+            echo -e "${BLUE}:: Learn more about Nala: https://gitlab.com/volian/nala ${ENDCOLOR}"
 
             sudo apt install nala 
+
+echo "Starting = Be Gone Snap"
+echo "
+█▄▄ █▀▀   █▀▀ █▀█ █▄░█ █▀▀   █▀ █▄░█ ▄▀█ █▀█
+█▄█ ██▄   █▄█ █▄█ █░▀█ ██▄   ▄█ █░▀█ █▀█ █▀▀
+"
+
 
             echo -e "${RED}:: Starting replacement of Firefox snap {ENDCOLOR}"
             echo -e "${RED}The following will be removed: Firefox provided by snap ${ENDCOLOR}"
@@ -112,7 +115,7 @@ Pin-Priority: 1001
             
             sudo apt install firefox -y
 
-            echo -e "${GREEN}:: Installing flatpak ${ENDCOLOR}"\
+            echo -e "${GREEN}:: Installing flatpak ${ENDCOLOR}"
 
             sudo apt install gnome-software gnome-software-plugin-flatpak flatpak -y
             
@@ -131,6 +134,7 @@ Pin-Priority: 1001
 
             sudo apt autoremove --purge snapd
 
+            echo "Deleting snap directories..."
             sudo rm -rf /var/cache/snapd
             rm -rf ~/snap
 
@@ -157,7 +161,7 @@ Pin-Priority: 1001
             chmod +x disableUbuntuOptOut.sh
 
             ## Run command neofetch because why not :D
-            neofetch 
+            neofetch
 
             echo -e "${GREEN}:: Setup complete, please reboot your machine before performing any other task."
             notify-send --app-name=Tabel "Ubuntu installation complete, please reboot your machine before performing any other task."
