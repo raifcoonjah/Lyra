@@ -18,8 +18,8 @@ echo -e "${PURPLE}
 ${ENDCOLOR}
 "
 
-echo -e "${RED}When using tabel we expect you already have a working install of your selected distro.${ENDCOLOR}"
-echo "Please choose your distro: "
+echo -e "${RED} Make sure you already have a working install before running tabel. ${ENDCOLOR}"
+echo "Select your distro: "
 
 
 supported_distros=("Arch Linux" "Ubuntu" "Fedora" "Update" "Quit/Exit")
@@ -86,15 +86,12 @@ do
             echo -e "${BLUE}:: Learn more about Nala: https://gitlab.com/volian/nala ${ENDCOLOR}"
 
             sudo apt install nala 
+            echo "Starting = Be Gone Snap"
+            echo "
+            █▄▄ █▀▀   █▀▀ █▀█ █▄░█ █▀▀   █▀ █▄░█ ▄▀█ █▀█
+            █▄█ ██▄   █▄█ █▄█ █░▀█ ██▄   ▄█ █░▀█ █▀█ █▀▀ "
 
-echo "Starting = Be Gone Snap"
-echo "
-█▄▄ █▀▀   █▀▀ █▀█ █▄░█ █▀▀   █▀ █▄░█ ▄▀█ █▀█
-█▄█ ██▄   █▄█ █▄█ █░▀█ ██▄   ▄█ █░▀█ █▀█ █▀▀
-"
-
-
-            echo -e "${RED}:: Starting replacement of Firefox snap {ENDCOLOR}"
+            echo -e "${RED}:: Starting replacement of Firefox snap ${ENDCOLOR}"
             echo -e "${RED}The following will be removed: Firefox provided by snap ${ENDCOLOR}"
             
             sudo snap remove firefox
@@ -103,11 +100,7 @@ echo "
             echo -e "${RED}:: Installing and enabling Firefox from mozillateam/ppa...${ENDCOLOR}"
             sudo add-apt-repository ppa:mozillateam/ppa
 
-            echo '
-Package: *
-Pin: release o=LP-PPA-mozillateam
-Pin-Priority: 1001
-' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+            echo 'Package: * Pin: release o=LP-PPA-mozillateam Pin-Priority: 1001' | sudo tee /etc/apt/preferences.d/mozilla-firefox
             
             echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
 
@@ -124,7 +117,7 @@ Pin-Priority: 1001
             sleep 5
             flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-            echo -e "${RED}:: The following packages systemd services will be disabled: snapd.service, snapd.socket, snapd.seeded.service ${ENDCOLOR}"
+            echo -e "${RED}:: The following systemd services will be disabled: snapd.service, snapd.socket, snapd.seeded.service ${ENDCOLOR}"
             sudo systemctl disable snapd.service
             sudo systemctl disable snapd.socket
             sudo systemctl disable snapd.seeded.service
@@ -176,7 +169,7 @@ Pin-Priority: 1001
             then
             echo "Lines are already enabled! :D"
         else
-            echo "Doing magic.."
+            echo "Improving DNF experience..."
             echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
             echo 'defaultyes=True' | sudo tee -a /etc/dnf/dnf.conf
         fi
@@ -215,6 +208,7 @@ Pin-Priority: 1001
             echo -e "${GREEN}Updating tabel... ${ENDCOLOR}"
             git fetch --all
             git reset --hard origin/ubuntu ## TODO: CHANGE TO MASTER
+            echo "Tabel updated."
             notify-send --app-name=Tabel --expire-time=10000 "Tabel updated successfully"
             
 break
