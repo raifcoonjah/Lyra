@@ -1,7 +1,6 @@
 Lyra, previous named Tabel.
 
-![logo](https://i.imgur.com/AR6ejad.png) 
-((temporary image))
+![logo](https://i.imgur.com/InT8w5H.png)
 
 # Lyra Installer - Get going ASAP!
 Lyra is a all in one, Linux setup tool. Tabel will download all the basic packages needed for a usable system including basic packages needed on all systems, fonts and more. A full list will be avaiable soon. 
