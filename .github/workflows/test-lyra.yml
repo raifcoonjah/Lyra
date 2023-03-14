@@ -23,11 +23,15 @@ jobs:
         run: git clone https://github.com/raifcoonjah/lyra.git
       - name: Enter repository
         run: cd lyra
+        # Check to see if Lyra is working properly
+        # "bash -n lyra.sh" will detect any syntax error without actually executing the
+        # command itself.
       - name: Test lyra execution
         run: |
-          if ./lyra.sh; then
-            echo "Success! lyra.sh executed."
+          if bash -n lyra.sh then
+            echo "Success! lyra.sh executed without syntax errors."
             sleep 5
           else
-            echo "Error: lyra.sh did not execute."
+            echo "Error: lyra.sh did not execute, it may contain some syntax errors."
+            exit 1
           fi
