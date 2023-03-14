@@ -28,8 +28,6 @@ jobs:
           if ./lyra.sh; then
             echo "Success! lyra.sh executed."
             sleep 5
-            break;;
           else
             echo "Error: lyra.sh did not execute."
-            break;;
           fi
