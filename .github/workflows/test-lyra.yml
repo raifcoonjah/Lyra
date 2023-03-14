@@ -28,10 +28,9 @@ jobs:
         # command itself.
       - name: Test lyra execution
         run: |
-          if bash -n lyra.sh then
-            echo "Success! lyra.sh executed without syntax errors."
-            sleep 5
+          if bash -n lyra.sh; then
+            echo "Success! lyra.sh has no syntax errors."
           else
-            echo "Error: lyra.sh did not execute, it may contain some syntax errors."
+            echo "Error: lyra.sh has syntax errors!"
             exit 1
           fi
