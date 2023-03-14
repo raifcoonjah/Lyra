@@ -3,7 +3,7 @@
 RED="\e[31m"
 GREEN="\e[32m"
 BLUE="\e[34m"
-ENDCOLOR="\e[0m"
+ENDCOLOR="\e[0m
 
 echo -e "${GREEN}
     ___       ___       ___       ___   
