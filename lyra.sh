@@ -9,20 +9,19 @@ PURPLE='\033[0;35m'
 ENDCOLOR="\e[0m"
 
 echo -e "${PURPLE}
-████████╗░█████╗░██████╗░███████╗██╗░░░░░
-╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║░░░░░
-░░░██║░░░███████║██████╦╝█████╗░░██║░░░░░
-░░░██║░░░██╔══██║██╔══██╗██╔══╝░░██║░░░░░
-░░░██║░░░██║░░██║██████╦╝███████╗███████╗
-░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░╚══════╝╚══════╝
-${ENDCOLOR}
-"
+   __                        
+  / / _   _ _   _ _ __ __ _  
+ / / | | | | | | | '__/ _| | 
+/ /__| |_| | |_| | | | (_| | 
+\____/\__, |\__,_|_|  \__,_| 
+      |___/                  
+${ENDCOLOR}"
 
 echo -e "${RED} Make sure you already have a working install before running tabel. ${ENDCOLOR}"
 echo "Select your distro: "
 
 
-supported_distros=("Arch Linux" "Ubuntu" "Fedora" "Update" "Quit/Exit")
+supported_distros=("Arch Linux" "Ubuntu" "Fedora" "Debian" "***********" "Update" "Quit/Exit")
 select opt in "${supported_distros[@]}"
 do
     case $opt in
@@ -79,7 +78,7 @@ do
             sleep 5
             sudo apt install ubuntu-restricted-extras -y 
             
-            echo -e "${BLUE}:: Installing unzip, unrar, p7zip, neofetch${ENDCOLOR}"            
+            echo -e "${BLUE}:: Installing unzip, unrar, p7zip, neofetch ${ENDCOLOR}"            
             sudo apt install p7zip unrar unzip neofetch -y
 
             echo -e "${BLUE}:: Installing Nala... ${ENDCOLOR}"
@@ -200,22 +199,29 @@ do
 
             neofetch
 
-            notify-send --app-name=Tabel --expire-time=10000 "Setup complete, please reboot your machine before performing any other task"
+            notify-send --app-name=Lyra --expire-time=10000 "Setup complete, please reboot your machine before performing any other task"
 
+;;
+        "Debian")
+          echo -e "${GREEN} Hello! ${ENDCOLOR}"
+          
+
+          notify-send --app-name=Lyra --expire-time=10000 "Debian script ran successfully"
+          break
 ;;
         "Update")
 
-            echo -e "${GREEN}Updating tabel... ${ENDCOLOR}"
+            echo -e "${RED} Updating lyra... ${ENDCOLOR}"
             git fetch --all
             git reset --hard origin/ubuntu ## TODO: CHANGE TO MASTER
-            echo "Tabel updated."
-            notify-send --app-name=Tabel --expire-time=10000 "Tabel updated successfully"
+            echo "Lyra updated."
+            notify-send --app-name=Tabel --expire-time=10000 "Lyra updated successfully"
             
 break
 ;;
         "Quit/Exit")
             break
             ;;
-        *) echo "Invalid option selected, $REPLY is a not a value.";;
+        *) echo "Invalid option selected, $REPLY is either not supported or invalid.";;
     esac
 done
