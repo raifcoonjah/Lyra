@@ -23,16 +23,21 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
+      - name: Clone repository
+        run: git clone https://github.com/raifcoonjah/lyra.git
+
+      - name: Cd into directory
+        run: cd lyra
+
+      - name: Test lyra
         run: |
-          git clone https://github.com/raifcoonjah/lyra.git
-          cd lyra
-          if ./lyra.sh; then
-              echo "Test success, Lyra executed with success."
-          else 
-              echo "Error: Lyra did not execute properly."
-              exit 1
+          if ./lyra.sh; then 
+            echo "Test runs!"
+          else
+            echo "Error: Lyra.sh did not execute properly"
+            exit 1
           fi
