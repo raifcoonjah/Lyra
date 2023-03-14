@@ -20,8 +20,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Clone repository
-        run: git clone https://github.com/raifcoonjah/lyra.git .
-      - name: Test lyra repository
+        run: git clone https://github.com/raifcoonjah/lyra.git
+      - name: Enter repository
+        run: cd lyra
+      - name: Test lyra execution
         run: |
           if ./lyra.sh; then
             echo "Success! lyra.sh executed."
