@@ -30,8 +30,9 @@ jobs:
         run: |
           git clone https://github.com/raifcoonjah/lyra.git
           cd lyra
-
-      # Runs a set of commands using the runners shell
-      - name: Run lyra
-        run: |
-          ./lyra.sh
+          if ./lyra.sh; then
+              echo "Test success, Lyra executed with success."
+          else 
+              echo "Error: Lyra did not execute properly."
+              exit 1
+          fi
