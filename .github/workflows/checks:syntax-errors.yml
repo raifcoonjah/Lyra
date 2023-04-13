@@ -21,16 +21,16 @@ jobs:
         uses: actions/checkout@v2
       - name: Clone repository
         run: git clone https://github.com/raifcoonjah/lyra.git
-      - name: cd repository
+      - name: Go into directory
         run: cd lyra
         # Check to see if Lyra is working properly
         # "bash -n lyra.sh" will detect any syntax error without actually executing the
         # command itself.
-      - name: Test lyra execution
+      - name: Check for syntax errors
         run: |
           if bash -n lyra.sh; then
             echo "Success! lyra.sh has no syntax errors. YAY!"
           else
             echo "Error: lyra.sh has syntax errors, check above."
-            exit 1
+            exit 1 
           fi
