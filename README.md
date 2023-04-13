@@ -19,7 +19,7 @@ Currently tabel is supported on some of the major distros:
 </ol> 
 
 ### About Lyra
-Lyra is written in plain **100% bash** to make it easy to fork and add changes you deem necessary for your own setup (ps: dont forget to make PR if you find something interesting :D). 
+Lyra is written in plain **100% bash** but a ansible version is in the works ;) to make it easy to fork and add changes you deem necessary for your own setup (ps: dont forget to make PR if you find something interesting :D). 
 >>> Currently the project is still a work-in-progress, but its **stable** enough for the average user. 
 
 Current Features
@@ -27,7 +27,7 @@ Current Features
 - Only the essentials and nothing else.
 
 Distro specific features: 
-###### Ubuntu (coming soon):
+###### Ubuntu:
 - Removed Firefox snap and replaces it with .deb version instead.
 - Adds Mozilla debian firefox repo. 
 - Remove/Disable snap from the system completely. 
