@@ -80,11 +80,6 @@ do
             echo -e "${BLUE}:: Installing unzip, unrar, p7zip, neofetch ${ENDCOLOR}"            
             sudo apt install p7zip unrar unzip neofetch -y
 
-            echo -e "${BLUE}:: Installing Nala... ${ENDCOLOR}"
-            echo -e "${BLUE}:: Learn more about Nala: https://gitlab.com/volian/nala ${ENDCOLOR}"
-
-            sudo apt install nala 
-            echo "Starting = Be Gone Snap"
             echo "
             █▄▄ █▀▀   █▀▀ █▀█ █▄░█ █▀▀   █▀ █▄░█ ▄▀█ █▀█
             █▄█ ██▄   █▄█ █▄█ █░▀█ ██▄   ▄█ █░▀█ █▀█ █▀▀ "
@@ -105,6 +100,11 @@ do
             echo -e "${GREEN}:: Installing Firefox (deb package)...${ENDCOLOR}"
             
             sudo apt install firefox -y
+            sleep 5
+
+            echo -e "${GREEN}:: Display firefox version ${ENDCOLOR}"
+
+            firefox --version 
 
             echo -e "${GREEN}:: Installing flatpak ${ENDCOLOR}"
 
@@ -114,6 +114,11 @@ do
             echo -e "${RED}:: Password authentication for addition of flatpak remote. ${ENDCOLOR}"
             sleep 5
             flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+
+            echo -e "${RED}:: WARNING: The upcoming commands will remove and purge all snaps installed on your system, you've been warned. ${ENDCOLOR}"
+
+            sleep 10
 
             echo -e "${RED}:: The following systemd services will be disabled: snapd.service, snapd.socket, snapd.seeded.service ${ENDCOLOR}"
             sudo systemctl disable snapd.service
