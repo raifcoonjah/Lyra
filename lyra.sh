@@ -1,29 +1,26 @@
 #!/bin/bash
 
+## Set color values
 RED="\e[31m"
 GREEN="\e[32m"
 BLUE="\e[34m"
+PURPLE='\033[0;35m'
 ENDCOLOR="\e[0m"
 
-echo -e "${GREEN}
-    ___       ___       ___       ___   
-   /\  \     /\  \     /\  \     /\  \     /\__\  
-   \:\  \   /::\  \   /::\  \   /::\  \   /:/  /  
-   /::\__\ /::\:\__\ /::\:\__\ /::\:\__\ /:/__/   
-  /:/\/__/ \/\::/  / \:\::/  / \:\:\/  / \:\  \   
-  \/__/      /:/  /   \::/  /   \:\/  /   \:\__\  
-             \/__/     \/__/     \/__/     \/__/
+echo -e "${PURPLE}
+   __                        
+  / / _   _ _ __ __ _  
+ / / | | | | '__/ _| | 
+/ /__| |_| | | | (_| | 
+\____/\__, |_|  \__,_| 
+      |___/                  
+${ENDCOLOR}"
 
-            ++ Version: 1.1 | Codename: Cheese cake ++
-    Developed & Maintained by Tabel Developers.
-${ENDCOLOR}
-"
-
-echo -e "${RED}When using tabel we expect you already have a working install of your selected distro.${ENDCOLOR}"
-echo "Please choose your distro: "
+echo -e "${RED}Ensure your system is already operational before starting. ${ENDCOLOR}"
+echo "Select your Linux distribution: "
 
 
-supported_distros=("Arch Linux" "Debian/Ubuntu" "Fedora" "Quit/Exit")
+supported_distros=("Arch Linux" "Ubuntu" "Fedora" "Debian" "Update" "Quit/Exit")
 select opt in "${supported_distros[@]}"
 do
     case $opt in
@@ -34,8 +31,9 @@ do
             echo -e "${BLUE}:: Installing Git, curl, nano, wget, zsh & fakeroot..${ENDCOLOR}"
             sudo pacman -S --noconfirm git curl wget zsh nano fakeroot
 
-            echo -e "${BLUE}:: Installing tar, gzip, bzip2, unzip, unrar & p7zip.. ${ENDCOLOR}"
-            sudo pacman -S --noconfirm tar gzip bzip2 unzip unrar p7zip
+            echo -e "${BLUE}:: Installing Unzip, unrar & p7zip.. ${ENDCOLOR}"
+            sudo pacman -S --noconfirm tar unzip unrar p7zip
+
             ## Flatpak support
             echo -e "${BLUE}Installing and adding flatpak support..${ENDCOLOR}"
             sudo pacman -S --noconfirm flatpak 
@@ -45,8 +43,8 @@ do
 
             ## This directory is going to store everything during the setup. 
             echo "Making directory to store files.."
-            mkdir tabel_arch_install 
-            cd tabel_arch_install
+            mkdir Lyra_yayinstall 
+            cd Lyra_yayinstall
 
             ## Cloning and building the AUR
             echo "Downloading yay-bin from AUR.."
@@ -62,17 +60,89 @@ do
 
             sudo pacman --noconfirm -S noto-fonts-cjk noto-fonts-extra noto-fonts-emoji ttf-dejavu
 
-            echo -e "${GREEN}:: Basic Arch setup: SUCCESSFUL! ${ENDCOLOR}"
-            # echo " To install gaming packages please choose ArchGaming.."
+
+            notify-send --app-name=Lyra --expire-time=10000 "Arch setup complete, goodbye"
 
             ;;
-        "Debian/Ubuntu")
-            echo "Selected Debian/Ubuntu.."
-            echo "Ah! Sorry but support for Ubuntu is coming soon."
+        "Ubuntu")
+            echo "Selected Ubuntu.."
+            
+            echo -e "${GREEN}:: Perfoming system update, this may take a moment...${ENDCOLOR}"
+            sudo apt update 
+            sleep 5
+            sudo apt upgrade -y 
+
+            echo -e "${BLUE}:: Enabling Multimedia Media codecs... ${ENDCOLOR}"
+            echo -e "${RED}:: The following package may require additional confirmation, please press <OK> when shown..${ENDCOLOR}"
+            sleep 5
+            sudo apt install ubuntu-restricted-extras -y 
+            
+            echo -e "${BLUE}:: Installing unzip, unrar, p7zip, neofetch ${ENDCOLOR}"            
+            sudo apt install p7zip unrar unzip neofetch -y
+
+            echo "
+            █▄▄ █▀▀   █▀▀ █▀█ █▄░█ █▀▀   █▀ █▄░█ ▄▀█ █▀█
+            █▄█ ██▄   █▄█ █▄█ █░▀█ ██▄   ▄█ █░▀█ █▀█ █▀▀ "
+
+            echo -e "${RED}:: Starting replacement of Firefox snap ${ENDCOLOR}"
+            echo -e "${RED}The following will be removed: Firefox provided by snap ${ENDCOLOR}"
+            
+            sudo snap remove firefox
+
+            ## This will add Firefox's own Debian repo and use that instead of Firefox snap
+            echo -e "${RED}:: Installing and enabling Firefox from mozillateam/ppa...${ENDCOLOR}"
+            sudo add-apt-repository ppa:mozillateam/ppa
+
+            echo 'Package: * Pin: release o=LP-PPA-mozillateam Pin-Priority: 1001' | sudo tee /etc/apt/preferences.d/mozilla-firefox
+            
+            echo 'Unattended-Upgrade::Allowed-Origins:: "LP-PPA-mozillateam:${distro_codename}";' | sudo tee /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+
+            echo -e "${GREEN}:: Installing Firefox (deb package)...${ENDCOLOR}"
+            
+            sudo apt install firefox -y
+            sleep 5
+
+            echo -e "${GREEN}:: Display firefox version ${ENDCOLOR}"
+
+            firefox --version 
+
+            echo -e "${GREEN}:: Installing flatpak ${ENDCOLOR}"
+
+            sudo apt install gnome-software gnome-software-plugin-flatpak flatpak -y
+            
+            echo -e "${GREEN}:: Enabling flathub support... ${ENDCOLOR}"
+            echo -e "${RED}:: Password authentication for addition of flatpak remote. ${ENDCOLOR}"
+            sleep 5
+            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+
+            echo -e "${RED}:: WARNING: The upcoming commands will remove and purge all snaps installed on your system, you've been warned. ${ENDCOLOR}"
+
+            sleep 10
+
+            echo -e "${RED}:: The following systemd services will be disabled: snapd.service, snapd.socket, snapd.seeded.service ${ENDCOLOR}"
+            sudo systemctl disable snapd.service
+            sudo systemctl disable snapd.socket
+            sudo systemctl disable snapd.seeded.service
+
+            # The follow command will remove all currently installed snaps before we remove it using apt. 
+            sudo snap remove $(snap list | awk '!/^Name|^core/ {print $1}')
+
+            sudo apt autoremove --purge snapd
+
+            echo "Deleting snap directories..."
+            sudo rm -rf /var/cache/snapd
+            rm -rf ~/snap
+
+            ## Run command neofetch because why not :D
+            neofetch
+
+            echo -e "${GREEN}:: Setup complete, please reboot your machine before performing any other task."
+            notify-send --app-name=Lyra "Ubuntu installation complete, please reboot your machine before performing any other task."
             ;;
         "Fedora")
             echo "Selected Fedora.."
-            echo -e "${BLUE}Welcome to Fedora, lets get going...${ENDCOLOR}"
+            echo -e "${BLUE}Welcome to Fedora ${ENDCOLOR}"
             echo -e "${GREEN}:: Doing some magic to make dnf faster... (Password required)${ENDCOLOR}"
             echo -e "Checking if line is present first.."
             # Go into file and check if lines are there (>?)
@@ -80,7 +150,7 @@ do
             then
             echo "Lines are already enabled! :D"
         else
-            echo "Doing magic.."
+            echo "Improving DNF experience..."
             echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
             echo 'defaultyes=True' | sudo tee -a /etc/dnf/dnf.conf
         fi
@@ -88,7 +158,7 @@ do
             echo -e "${GREEN}:: Starting system update process...${ENDCOLOR}"
             sudo dnf update -y
             
-            echo "Hold up, let me drink some water..."
+            echo "Hold up a second.."
 
             sleep 1
 
@@ -107,18 +177,33 @@ do
             sudo dnf group upgrade --with-optional Multimedia -y
 
             echo -e "${GREEN}:: Installing basic software...${ENDCOLOR}"
-            sudo dnf install p7zip unrar git curl wget neofetch -y 
+            sudo dnf install p7zip git curl wget neofetch -y 
 
             neofetch
 
-            echo ":: All good, installing successfull"
-            echo -e "${RED}:: A REBOOT IS REQUIRED, PLEASE DO SO BEFORE DOING ANYTHING ELSE.${ENDCOLOR}"
+            notify-send --app-name=Lyra --expire-time=10000 "Setup complete, please reboot your machine before performing any other task"
 
-            break 
-            ;;
+;;
+        "Debian")
+          echo -e "${RED} Debian support is coming in the future. ${ENDCOLOR}"
+          
+
+          notify-send --app-name=Lyra --expire-time=10000 "Debian is not supported at this time."
+          break
+;;
+        "Update")
+
+            echo -e "${RED} Updating lyra... ${ENDCOLOR}"
+            git fetch --all
+            git reset --hard origin/ubuntu ## TODO: CHANGE TO MASTER
+            echo "Lyra updated."
+            notify-send --app-name=Lyra --expire-time=10000 "Lyra updated successfully"
+            
+break
+;;
         "Quit/Exit")
             break
             ;;
-        *) echo "Invalid option selected, $REPLY is a not a value.";;
+        *) echo "Invalid option selected, $REPLY is either not supported or invalid.";;
     esac
 done

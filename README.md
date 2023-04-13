@@ -23,6 +23,7 @@ Lyra is written in plain **100% bash** but a ansible version is in the works ;) 
 >>> Currently the project is still a work-in-progress, but its **stable** enough for the average user. 
 
 Current Features
+
 - Super easy to use.
 - Only the essentials and nothing else.
 
