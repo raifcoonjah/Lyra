@@ -1,25 +1,37 @@
-![logo](https://i.imgur.com/nQiZJNQ.png)
+![logo](https://i.imgur.com/InT8w5H.png)
 
-# Tabel Installer - Get going ASAP!
+<h4 align="center">Flavours</h4>
+<p align="center">
+ <a href="https://github.com/lyra/">Default</a>  | <a href="https://github.com/lyra/tree/ansible">Ansible</a>
+</p>
 
-Tabel is a all in one, linux setup tool. Tabel will download all the basic packages needed for a usable system including basic packages needed on all systems, fonts and more. A full list will be avaiable soon.
+
+# Lyra Installer - Get going ASAP!
+Lyra is a all in one, Linux setup tool. Tabel will download all the basic packages needed for a usable system including basic packages needed on all systems, fonts and more. A full list will be available soon. 
 
 ### Support
-
-Currently tabel is supported on
+Currently tabel is supported on some of the major distros:
 
 <ol>
   <li>Fedora Linux</li>
   <li>Arch Linux</li>
-  <li>Debian/Ubuntu -- (WIP check PR #3)</li>
-</ol>
+  <li>Ubuntu (coming soon)</li>
+</ol> 
 
-### About Tabel
-
-Tabel is written in plain **old bash** to make it easy to fork and add changes you deem necessary for your own setup. Currently the project is still a work-in-progress and is **not production ready, DO NOT USE IT YET!** But if like to live a risky life, you're free to give it a try and report any issues you experienced :D
+### About Lyra
+Lyra is written in plain **100% bash** but a ansible version is in the works ;) to make it easy to fork and add changes you deem necessary for your own setup (ps: dont forget to make PR if you find something interesting :D). 
+>>> Currently the project is still a work-in-progress, but its **stable** enough for the average user. 
 
 Current Features
 
 - Super easy to use.
 - Only the essentials and nothing else.
-- More soon!
+
+Distro specific features: 
+###### Ubuntu:
+- Removed Firefox snap and replaces it with .deb version instead.
+- Adds Mozilla debian firefox repo. 
+- Remove/Disable snap from the system completely. 
+- Replace ubuntu store with Gnome Software. 
+- Install flatpak & flathub. 
+- Disables all ubuntu telemetry using a cool project called: [disable-ubuntu-telemetry](https://github.com/LamdaLamdaLamda/disable-ubuntu-telemetry)
