@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-lyra
 ## Set color values
 RED="\e[31m"
 GREEN="\e[32m"
@@ -18,11 +16,11 @@ echo -e "${PURPLE}
       |___/                  
 ${ENDCOLOR}"
 
-echo -e "${RED} Make sure you already have a working install before running tabel. ${ENDCOLOR}"
-echo "Select your distro: "
+echo -e "${RED}Ensure your system is already operational before starting. ${ENDCOLOR}"
+echo "Select your Linux distribution: "
 
 
-supported_distros=("Arch Linux" "Ubuntu" "Fedora" "Debian" "***********" "Update" "Quit/Exit")
+supported_distros=("Arch Linux" "Ubuntu" "Fedora" "Debian" "Update" "Quit/Exit")
 select opt in "${supported_distros[@]}"
 do
     case $opt in
@@ -45,8 +43,8 @@ do
 
             ## This directory is going to store everything during the setup. 
             echo "Making directory to store files.."
-            mkdir tabel_yayinstall 
-            cd tabel_yayinstall
+            mkdir Lyra_yayinstall 
+            cd Lyra_yayinstall
 
             ## Cloning and building the AUR
             echo "Downloading yay-bin from AUR.."
@@ -63,7 +61,7 @@ do
             sudo pacman --noconfirm -S noto-fonts-cjk noto-fonts-extra noto-fonts-emoji ttf-dejavu
 
 
-            notify-send --app-name=Tabel --expire-time=10000 "Arch setup complete, goodbye"
+            notify-send --app-name=Lyra --expire-time=10000 "Arch setup complete, goodbye"
 
             ;;
         "Ubuntu")
@@ -131,33 +129,11 @@ do
             sudo rm -rf /var/cache/snapd
             rm -rf ~/snap
 
-            echo -e "Blocking ubuntu from accessing telemetry..."
-            echo "Tabel will use a third-party tool called disable-ubuntu-telemetry developed by LamdaLamdaLamda!"
-            echo "Some files will be cloned from Github..."
-
-            mkdir tabel-ubuntu
-            cd tabel-ubuntu
-            git clone https://github.com/LamdaLamdaLamda/disable-ubuntu-telemetry.git
-            
-            cd disable-ubuntu-telemetry
-
-            echo "The following script will be run in 10 seconds, feel free to check it yourself."
-
-            cat disableUbuntuOptOut.sh
-
-            sleep 10 
-
-            echo "Using sudo permission to run script.."
-
-            sudo ./disableUbuntuOptOut.sh
-
-            chmod +x disableUbuntuOptOut.sh
-
             ## Run command neofetch because why not :D
             neofetch
 
             echo -e "${GREEN}:: Setup complete, please reboot your machine before performing any other task."
-            notify-send --app-name=Tabel "Ubuntu installation complete, please reboot your machine before performing any other task."
+            notify-send --app-name=Lyra "Ubuntu installation complete, please reboot your machine before performing any other task."
             ;;
         "Fedora")
             echo "Selected Fedora.."
@@ -204,10 +180,10 @@ do
 
 ;;
         "Debian")
-          echo -e "${GREEN} Hello! ${ENDCOLOR}"
+          echo -e "${RED} Debian support is coming in the future. ${ENDCOLOR}"
           
 
-          notify-send --app-name=Lyra --expire-time=10000 "Debian script ran successfully"
+          notify-send --app-name=Lyra --expire-time=10000 "Debian is not supported at this time."
           break
 ;;
         "Update")
@@ -216,7 +192,7 @@ do
             git fetch --all
             git reset --hard origin/ubuntu ## TODO: CHANGE TO MASTER
             echo "Lyra updated."
-            notify-send --app-name=Tabel --expire-time=10000 "Lyra updated successfully"
+            notify-send --app-name=Lyra --expire-time=10000 "Lyra updated successfully"
             
 break
 ;;
