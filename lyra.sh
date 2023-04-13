@@ -195,7 +195,7 @@ do
 
             echo -e "${RED} Updating lyra... ${ENDCOLOR}"
             git fetch --all
-            git reset --hard origin/ubuntu ## TODO: CHANGE TO MASTER
+            git reset --hard origin/master ## TODO: CHANGE TO MASTER
             echo "Lyra updated."
             notify-send --app-name=Lyra --expire-time=10000 "Lyra updated successfully"
             
