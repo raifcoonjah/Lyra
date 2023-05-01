@@ -34,4 +34,3 @@ Distro specific features:
 - Remove/Disable snap from the system completely. 
 - Replace ubuntu store with Gnome Software. 
 - Install flatpak & flathub. 
-- Disables all ubuntu telemetry using a cool project called: [disable-ubuntu-telemetry](https://github.com/LamdaLamdaLamda/disable-ubuntu-telemetry)
