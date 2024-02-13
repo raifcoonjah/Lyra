@@ -1,3 +1,5 @@
+## Maintenance mode, lyra will no longer receive any feature updates. 
+
 ![logo](https://i.imgur.com/InT8w5H.png)
 
 <h4 align="center">Flavours</h4>
